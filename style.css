@@ -1,0 +1,1124 @@
+/* ===== GENERAL PAGE STYLING ===== */
+
+/* This resets spacing and makes the page look clean */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* The whole page background and text settings */
+body {
+    background-color: #1a1a2e;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ===== SCREEN SYSTEM ===== */
+
+/* Each "screen" is a section of the page. Only one is visible at a time. */
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Hidden screens disappear completely */
+.screen.hidden {
+    display: none;
+}
+
+/* ===== THE TITLE ===== */
+
+/* The title row with Pikachu on the left and Pokeball on the right */
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+/* Pikachu sprite next to the title */
+.title-mascot {
+    width: 112.3px;
+    height: 112.3px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+/* Container for the mascot image(s) next to the title */
+.mascot-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Pokeball image next to the title */
+.title-pokeball {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+/* The big "Pokémon Chess" title at the top */
+.game-title {
+    font-family: Arial, sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: #ffcb05;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* ===== MAIN MENU ===== */
+
+/* Extra space below the title on the menu screen */
+.menu-title {
+    font-size: 61px;
+    margin-bottom: 50px;
+    margin-top: 60px;
+}
+
+/* The stack of menu buttons (used on mode screen) */
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+
+/* "Choose Your Team" button at the top of the menu */
+.menu-team-btn {
+    margin-bottom: 40px;
+}
+
+/* "Choose Your Region" button below the fun fact */
+.menu-region-btn {
+    margin-top: 30px;
+}
+
+/* Player stats box on the main menu */
+.stats-box {
+    margin-top: 30px;
+    padding: 16px 24px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    text-align: center;
+}
+
+.stats-title {
+    color: #ffcb05;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.stats-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 50px;
+}
+
+.stat-number {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.stat-label {
+    color: #999999;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+/* Color the win/loss/draw numbers */
+.stat-wins .stat-number {
+    color: #4CAF50;
+}
+
+.stat-losses .stat-number {
+    color: #f44336;
+}
+
+.stat-draws .stat-number {
+    color: #ff9800;
+}
+
+.stat-pct .stat-number {
+    color: #ffcb05;
+}
+
+/* Big "Play" button in the center */
+.menu-play-btn {
+    width: 300px;
+    padding: 20px 0;
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+
+/* Settings and Rules sit side by side at the bottom */
+.menu-bottom-row {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+/* The smaller side buttons (Settings, Rules) */
+.menu-side-btn {
+    width: 180px;
+    padding: 14px 0;
+    font-size: 18px;
+}
+
+/* Slanted fun fact at the bottom of the menu */
+.fun-fact {
+    margin-top: 50px;
+    font-family: Georgia, serif;
+    font-size: 31.5px;
+    font-style: italic;
+    color: #ffcb05;
+    transform: rotate(-3deg);
+    text-align: center;
+    max-width: 700px;
+    line-height: 1.5;
+}
+
+/* ===== TEAM SELECTION SCREEN ===== */
+
+/* 2x3 grid of piece cards */
+.team-piece-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/* Each piece card shows a sprite, name, and label */
+.team-piece-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid #555;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 150px;
+    transition: border-color 0.2s, background 0.2s;
+}
+.team-piece-card:hover {
+    border-color: #ffcb05;
+    background: rgba(255, 203, 5, 0.1);
+}
+
+.team-piece-sprite {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.team-piece-name {
+    color: #ffffff;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.team-piece-label {
+    color: #ffcb05;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+/* Row of buttons under the team grid */
+.team-buttons-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+/* ===== POKÉMON PICKER OVERLAY ===== */
+
+/* Full-screen dark overlay */
+.picker-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+.picker-overlay.hidden {
+    display: none;
+}
+
+/* The picker box in the center */
+.picker-box {
+    background-color: #16213e;
+    border: 3px solid #ffcb05;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Picker title */
+.picker-title {
+    color: #ffcb05;
+    font-size: 24px;
+    margin: 0 0 4px 0;
+}
+
+/* Picker rule description */
+.picker-rule {
+    color: #aaaaaa;
+    font-size: 14px;
+    margin: 0 0 8px 0;
+}
+
+/* Search input */
+.picker-search {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: 2px solid #ffcb05;
+    background: #1a1a2e;
+    color: #ffffff;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+    outline: none;
+}
+.picker-search:focus {
+    border-color: #ffd84d;
+}
+.picker-search::placeholder {
+    color: #666666;
+}
+
+/* Scrollable grid of Pokémon sprites */
+.picker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 6px;
+    overflow-y: auto;
+    flex: 1;
+    padding: 8px;
+    max-height: 400px;
+}
+
+/* Individual Pokémon option in the picker grid */
+.picker-pokemon {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px;
+    transition: border-color 0.15s, background 0.15s;
+}
+.picker-pokemon:hover {
+    border-color: #ffcb05;
+    background: rgba(255, 203, 5, 0.15);
+}
+.picker-pokemon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+/* ===== PAWN PROMOTION OVERLAY ===== */
+
+/* Full-screen dark overlay (same pattern as picker-overlay) */
+.promotion-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+.promotion-overlay.hidden {
+    display: none;
+}
+
+/* The centered modal box */
+.promotion-box {
+    background-color: #16213e;
+    border: 3px solid #ffcb05;
+    border-radius: 16px;
+    padding: 30px 40px;
+    text-align: center;
+}
+
+/* "Your Pawn evolved!" title */
+.promotion-title {
+    color: #ffcb05;
+    font-size: 28px;
+    margin: 0 0 6px 0;
+}
+
+/* "Choose a new piece:" subtitle */
+.promotion-subtitle {
+    color: #aaaaaa;
+    font-size: 16px;
+    margin: 0 0 20px 0;
+}
+
+/* Row of four promotion options */
+.promotion-options {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+/* Each clickable promotion card */
+.promotion-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid #555;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100px;
+    transition: border-color 0.2s, background 0.2s;
+}
+.promotion-option:hover {
+    border-color: #ffcb05;
+    background: rgba(255, 203, 5, 0.15);
+}
+
+/* The Pokemon sprite in each option */
+.promotion-sprite {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+/* The piece name label below the sprite */
+.promotion-label {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+/* ===== REGION SELECTION SCREEN ===== */
+
+/* 3x3 grid of region buttons */
+.region-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/* Each region button in the grid */
+.region-btn {
+    width: 160px;
+    padding: 18px 0;
+    font-size: 20px;
+}
+
+/* ===== SETTINGS SCREEN ===== */
+
+/* The list of settings rows */
+.settings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+/* Each row: label on the left, toggle on the right */
+.settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px 30px;
+    border-radius: 12px;
+    min-width: 400px;
+}
+
+/* The setting name (Art Style, Sound) */
+.settings-label {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Container for the toggle switch and its labels */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* The text labels on either side of the toggle (Pixel/HD, Off/On) */
+.toggle-option {
+    color: #888888;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+/* The active side lights up yellow */
+.toggle-option.active {
+    color: #ffcb05;
+}
+
+/* The toggle switch itself (the sliding pill shape) */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 56px;
+    height: 30px;
+}
+
+/* Hide the actual checkbox (we draw our own switch) */
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The track (the pill-shaped background) */
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #555555;
+    border-radius: 30px;
+    transition: background-color 0.3s;
+}
+
+/* The round knob that slides */
+.toggle-slider::before {
+    content: "";
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+/* When the toggle is ON, slide the knob to the right and change track color */
+.toggle-switch input:checked + .toggle-slider {
+    background-color: #ffcb05;
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+    transform: translateX(26px);
+}
+
+/* Big menu buttons (Play, Settings, Rules, vs Friend, vs Computer) */
+.menu-btn {
+    width: 260px;
+    padding: 16px 0;
+    font-size: 22px;
+    font-weight: bold;
+    color: #1a1a2e;
+    background-color: #ffcb05;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.menu-btn:hover {
+    background-color: #ffd84d;
+}
+
+/* Disabled/coming-soon buttons are grayed out */
+.menu-btn.disabled {
+    background-color: #555555;
+    color: #888888;
+    cursor: not-allowed;
+}
+
+.menu-btn.disabled:hover {
+    background-color: #555555;
+}
+
+/* Back button to return to previous screen */
+.back-btn {
+    margin-top: 24px;
+    padding: 10px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #cccccc;
+    background-color: transparent;
+    border: 2px solid #cccccc;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+/* ===== RULES SCREEN ===== */
+
+/* The scrollable rules content area */
+.rules-content {
+    max-width: 620px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+/* Each section (How Chess Works, Pokémon Piece Rules) */
+.rules-section {
+    margin-bottom: 30px;
+}
+
+/* Section headings */
+.rules-heading {
+    font-size: 24px;
+    color: #ffcb05;
+    margin-bottom: 10px;
+}
+
+/* Sub-headings within a section */
+.rules-subheading {
+    font-size: 18px;
+    color: #ffcb05;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+
+/* Regular text in the rules */
+.rules-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #dddddd;
+    margin-bottom: 10px;
+}
+
+/* Tables in the rules */
+.rules-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+}
+
+.rules-table th {
+    text-align: left;
+    padding: 8px 12px;
+    background-color: #3b5ca8;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.rules-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #333355;
+    font-size: 14px;
+    color: #dddddd;
+}
+
+.rules-table tr:nth-child(even) td {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Bullet lists in the rules */
+.rules-list {
+    padding-left: 20px;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #dddddd;
+}
+
+/* ===== TURN INDICATOR ===== */
+
+/* Shows whose turn it is */
+.turn-indicator {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 8px 24px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* White's turn styling */
+.turn-white {
+    background-color: #f0d9b5;
+    color: #333333;
+}
+
+/* Black's turn styling */
+.turn-black {
+    background-color: #333333;
+    color: #f0d9b5;
+    border: 2px solid #f0d9b5;
+}
+
+/* ===== THE CHESS BOARD ===== */
+
+/* Container that holds the column labels and the board */
+.board-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Column letters (a-h) along the top */
+.column-labels {
+    display: flex;
+    align-items: center;
+}
+
+/* Empty space in the corner above the row numbers */
+.label-spacer {
+    width: 30px;
+}
+
+/* Each column letter */
+.col-label {
+    width: 70px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #cccccc;
+    padding-bottom: 5px;
+}
+
+/* The board and row numbers side by side */
+.board-with-rows {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* Row numbers (1-8) along the left side */
+.row-labels {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Each row number */
+.row-label {
+    width: 30px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #cccccc;
+}
+
+/* The 8x8 grid of squares */
+#board {
+    display: grid;
+    grid-template-columns: repeat(8, 70px);
+    grid-template-rows: repeat(8, 70px);
+    border: 3px solid #ffcb05;
+    border-radius: 4px;
+}
+
+/* ===== SQUARE COLORS ===== */
+
+/* Each square on the board */
+.square {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Hide any part of the image that goes outside the square */
+    overflow: hidden;
+    /* Make the cursor a pointer (hand) when hovering */
+    cursor: pointer;
+    /* Needed so we can position things inside the square */
+    position: relative;
+}
+
+/* During a move animation, let the piece slide out of its square */
+.square.animating {
+    overflow: visible;
+    z-index: 10;
+}
+
+/* Light squares (cream/tan color) */
+.square.light {
+    background-color: #f0d9b5;
+}
+
+/* Dark squares (brown/green color) */
+.square.dark {
+    background-color: #b58863;
+}
+
+/* ===== SELECTED SQUARE ===== */
+
+/* When you click a Pokémon, its square gets highlighted */
+.square.selected {
+    background-color: #f7ec5a !important;
+    box-shadow: inset 0 0 0 3px #d4a017;
+}
+
+/* ===== VALID MOVE HIGHLIGHTS ===== */
+
+/* Empty squares where the piece can move show a dot */
+.square.valid-move::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 50%;
+    position: absolute;
+    /* Only show the dot if there's no piece on this square */
+    pointer-events: none;
+}
+
+/* Squares with an opponent's piece that can be captured get a ring */
+.square.valid-move .piece-image {
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.6);
+}
+
+/* ===== POKÉMON PIECE IMAGES ===== */
+
+/* The Pokémon image inside each square */
+/* We make the image bigger than the square so small sprites like
+   Pikachu and Jolteon (which have lots of empty space in the file)
+   look full-sized on the board. The overflow is hidden by the square. */
+.piece-image {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    /* Disable dragging so images don't get dragged around */
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+/* ===== TEAM COLOR BAR ===== */
+
+/* A small bar under each Pokémon so you can tell White from Black */
+.team-bar {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 5px;
+    border-radius: 3px;
+}
+
+/* White team gets a white bar */
+.team-bar.white-team {
+    background-color: #ffffff;
+    border: 1px solid #aaaaaa;
+}
+
+/* Black team gets a dark bar */
+.team-bar.black-team {
+    background-color: #333333;
+    border: 1px solid #666666;
+}
+
+/* ===== CHECK HIGHLIGHT ===== */
+
+/* When a King is in check, its square glows red */
+.square.in-check {
+    background-color: #ff4444 !important;
+    box-shadow: inset 0 0 12px rgba(255, 0, 0, 0.8);
+}
+
+/* ===== INFO PANEL ===== */
+
+/* The panel below the board that shows selected Pokémon info */
+.info-panel {
+    margin-top: 15px;
+    padding: 12px 24px;
+    background-color: #16213e;
+    border: 2px solid #ffcb05;
+    border-radius: 10px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    min-height: 50px;
+    min-width: 300px;
+    justify-content: center;
+}
+
+/* The hint text when nothing is selected */
+.info-hint {
+    color: #888888;
+    font-style: italic;
+    font-size: 14px;
+}
+
+/* Pokémon name in the info panel */
+.info-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffcb05;
+}
+
+/* Pokédex number in the info panel */
+.info-dex {
+    font-size: 18px;
+    color: #aaaaaa;
+}
+
+/* Chess piece role in the info panel */
+.info-piece {
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #3b5ca8;
+    padding: 4px 12px;
+    border-radius: 6px;
+}
+
+/* Row of buttons below the game board (Main Menu + Save & Quit) */
+.game-buttons-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 15px;
+}
+
+/* Continue button on the main menu (green to stand out) */
+.menu-continue-btn {
+    background-color: #4CAF50;
+    color: #ffffff;
+}
+
+.menu-continue-btn:hover {
+    background-color: #5CBF60;
+}
+
+.menu-continue-btn.hidden {
+    display: none;
+}
+
+/* ===== NEW GAME BUTTON ===== */
+
+.new-game-btn {
+    margin-top: 0;
+    padding: 10px 28px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1a1a2e;
+    background-color: #ffcb05;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.new-game-btn:hover {
+    background-color: #ffd84d;
+}
+
+.new-game-btn.hidden {
+    display: none;
+}
+
+/* ===== GAME OVER POPUP ===== */
+
+/* The dark overlay that covers the whole screen */
+.game-over-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+/* Hide the popup until the game ends */
+.game-over-overlay.hidden {
+    display: none;
+}
+
+/* The popup box in the center */
+.game-over-box {
+    background-color: #16213e;
+    border: 3px solid #ffcb05;
+    border-radius: 16px;
+    padding: 40px 50px;
+    text-align: center;
+}
+
+/* "Checkmate!" or "Stalemate!" title */
+.game-over-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ffcb05;
+    margin-bottom: 12px;
+}
+
+/* "White wins!" or "It's a draw!" message */
+.game-over-message {
+    font-size: 22px;
+    color: #ffffff;
+    margin-bottom: 24px;
+}
+
+/* Buttons row in the game over popup */
+.game-over-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* ===== REVIEW CONTROLS ===== */
+
+/* The bar with forward/back buttons for reviewing the game */
+.review-controls {
+    margin-top: 15px;
+    padding: 10px 16px;
+    background-color: #16213e;
+    border: 2px solid #ffcb05;
+    border-radius: 10px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hide review controls until review mode starts */
+.review-controls.hidden {
+    display: none;
+}
+
+/* Each arrow button in the review bar */
+.review-btn {
+    padding: 8px 14px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a1a2e;
+    background-color: #ffcb05;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.review-btn:hover {
+    background-color: #ffd84d;
+}
+
+/* Dim the button when it can't be clicked */
+.review-btn:disabled {
+    background-color: #555555;
+    color: #888888;
+    cursor: not-allowed;
+}
+
+/* The "Exit Review" button stands out a bit differently */
+.review-exit-btn {
+    margin-left: 12px;
+    background-color: #e05555;
+    color: #ffffff;
+}
+
+.review-exit-btn:hover {
+    background-color: #ff6b6b;
+}
+
+/* The "Move 3 / 12" counter text */
+.review-counter {
+    font-size: 14px;
+    color: #cccccc;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* ===== DIFFICULTY BUTTONS ===== */
+
+/* Easy = green */
+.diff-easy {
+    background-color: #4CAF50;
+    color: #ffffff;
+}
+.diff-easy:hover {
+    background-color: #5CBF60;
+}
+
+/* Medium = orange */
+.diff-medium {
+    background-color: #ff9800;
+    color: #ffffff;
+}
+.diff-medium:hover {
+    background-color: #ffad33;
+}
+
+/* Hard = red */
+.diff-hard {
+    background-color: #f44336;
+    color: #ffffff;
+}
+.diff-hard:hover {
+    background-color: #ff6659;
+}
+
+/* ===== THINKING ANIMATION ===== */
+
+/* Pulsing effect when the computer is "thinking" */
+@keyframes thinking-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.thinking {
+    animation: thinking-pulse 1.2s ease-in-out infinite;
+}
+
+/* ===== VERSION LABEL ===== */
+
+/* Small version number pinned to the bottom left corner */
+.version-label {
+    position: fixed;
+    bottom: 10px;
+    left: 14px;
+    font-size: 13px;
+    color: #666666;
+}

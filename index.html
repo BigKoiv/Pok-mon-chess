@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Chess</title>
+    <!-- Load our styling file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== MAIN MENU SCREEN ===== -->
+    <div id="menu-screen" class="screen">
+        <div class="title-row">
+            <div id="mascot-container" class="mascot-container">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png" alt="Pikachu" class="title-mascot">
+            </div>
+            <h1 class="game-title menu-title">Pokémon Chess</h1>
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Pokeball" class="title-pokeball">
+        </div>
+
+        <!-- Top button: Choose Your Team -->
+        <button id="menu-team-btn" class="menu-btn menu-team-btn">Choose Your Team</button>
+
+        <!-- Continue button (only visible when there's a saved game) -->
+        <button id="menu-continue-btn" class="menu-btn menu-play-btn menu-continue-btn hidden">Continue</button>
+
+        <!-- Big center Play button -->
+        <button id="menu-play-btn" class="menu-btn menu-play-btn">Play</button>
+
+        <!-- Bottom row: Settings on the left, Rules on the right -->
+        <div class="menu-bottom-row">
+            <button id="menu-settings-btn" class="menu-btn menu-side-btn">Settings</button>
+            <button id="menu-rules-btn" class="menu-btn menu-side-btn">Rules</button>
+        </div>
+
+        <!-- Fun fact that changes each visit -->
+        <p id="fun-fact" class="fun-fact"></p>
+
+        <!-- Choose Your Region button below the fun fact -->
+        <button id="menu-region-btn" class="menu-btn menu-region-btn">Choose Your Region</button>
+
+        <!-- Player stats -->
+        <div class="stats-box">
+            <div class="stats-title">Your Record</div>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-number" id="stats-games">0</span>
+                    <span class="stat-label">Played</span>
+                </div>
+                <div class="stat-item stat-wins">
+                    <span class="stat-number" id="stats-wins">0</span>
+                    <span class="stat-label">Wins</span>
+                </div>
+                <div class="stat-item stat-losses">
+                    <span class="stat-number" id="stats-losses">0</span>
+                    <span class="stat-label">Losses</span>
+                </div>
+                <div class="stat-item stat-draws">
+                    <span class="stat-number" id="stats-draws">0</span>
+                    <span class="stat-label">Draws</span>
+                </div>
+                <div class="stat-item stat-pct">
+                    <span class="stat-number" id="stats-win-pct">--</span>
+                    <span class="stat-label">Win %</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODE SELECTION SCREEN ===== -->
+    <div id="mode-screen" class="screen hidden">
+        <h1 class="game-title">Choose Your Mode</h1>
+        <div class="menu-buttons">
+            <button id="mode-friend-btn" class="menu-btn">vs Friend</button>
+            <button id="mode-computer-btn" class="menu-btn">vs Computer</button>
+        </div>
+        <button id="mode-back-btn" class="back-btn">Back</button>
+    </div>
+
+    <!-- ===== DIFFICULTY SELECTION SCREEN ===== -->
+    <div id="difficulty-screen" class="screen hidden">
+        <h1 class="game-title">Choose Difficulty</h1>
+        <div class="menu-buttons">
+            <button id="diff-easy-btn" class="menu-btn diff-btn diff-easy">Easy</button>
+            <button id="diff-medium-btn" class="menu-btn diff-btn diff-medium">Medium</button>
+            <button id="diff-hard-btn" class="menu-btn diff-btn diff-hard">Hard</button>
+        </div>
+        <button id="diff-back-btn" class="back-btn">Back</button>
+    </div>
+
+    <!-- ===== TEAM SELECTION SCREEN ===== -->
+    <div id="team-screen" class="screen hidden">
+        <h1 class="game-title">Your Team</h1>
+        <div class="team-piece-grid">
+            <button class="team-piece-card" data-piece="king">
+                <img class="team-piece-sprite" id="team-sprite-king" src="" alt="">
+                <span class="team-piece-name" id="team-name-king"></span>
+                <span class="team-piece-label">King</span>
+            </button>
+            <button class="team-piece-card" data-piece="queen">
+                <img class="team-piece-sprite" id="team-sprite-queen" src="" alt="">
+                <span class="team-piece-name" id="team-name-queen"></span>
+                <span class="team-piece-label">Queen</span>
+            </button>
+            <button class="team-piece-card" data-piece="rook">
+                <img class="team-piece-sprite" id="team-sprite-rook" src="" alt="">
+                <span class="team-piece-name" id="team-name-rook"></span>
+                <span class="team-piece-label">Rook</span>
+            </button>
+            <button class="team-piece-card" data-piece="bishop">
+                <img class="team-piece-sprite" id="team-sprite-bishop" src="" alt="">
+                <span class="team-piece-name" id="team-name-bishop"></span>
+                <span class="team-piece-label">Bishop</span>
+            </button>
+            <button class="team-piece-card" data-piece="knight">
+                <img class="team-piece-sprite" id="team-sprite-knight" src="" alt="">
+                <span class="team-piece-name" id="team-name-knight"></span>
+                <span class="team-piece-label">Knight</span>
+            </button>
+            <button class="team-piece-card" data-piece="pawn">
+                <img class="team-piece-sprite" id="team-sprite-pawn" src="" alt="">
+                <span class="team-piece-name" id="team-name-pawn"></span>
+                <span class="team-piece-label">Pawn</span>
+            </button>
+        </div>
+        <div class="team-buttons-row">
+            <button id="team-default-btn" class="back-btn">Use Default</button>
+            <button id="team-back-btn" class="back-btn">Back</button>
+        </div>
+    </div>
+
+    <!-- ===== POKÉMON PICKER OVERLAY ===== -->
+    <div id="picker-overlay" class="picker-overlay hidden">
+        <div class="picker-box">
+            <h2 class="picker-title" id="picker-title">Choose a King</h2>
+            <p class="picker-rule" id="picker-rule"></p>
+            <input type="text" id="picker-search" class="picker-search" placeholder="Search by name...">
+            <div id="picker-grid" class="picker-grid"></div>
+            <button id="picker-close-btn" class="back-btn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- ===== PAWN PROMOTION OVERLAY ===== -->
+    <div id="promotion-overlay" class="promotion-overlay hidden">
+        <div class="promotion-box">
+            <h2 class="promotion-title">Your Pawn evolved!</h2>
+            <p class="promotion-subtitle">Choose a new piece:</p>
+            <div class="promotion-options">
+                <button class="promotion-option" data-piece="q">
+                    <img class="promotion-sprite" id="promo-sprite-q" src="" alt="">
+                    <span class="promotion-label">Queen</span>
+                </button>
+                <button class="promotion-option" data-piece="r">
+                    <img class="promotion-sprite" id="promo-sprite-r" src="" alt="">
+                    <span class="promotion-label">Rook</span>
+                </button>
+                <button class="promotion-option" data-piece="b">
+                    <img class="promotion-sprite" id="promo-sprite-b" src="" alt="">
+                    <span class="promotion-label">Bishop</span>
+                </button>
+                <button class="promotion-option" data-piece="n">
+                    <img class="promotion-sprite" id="promo-sprite-n" src="" alt="">
+                    <span class="promotion-label">Knight</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== REGION SELECTION SCREEN ===== -->
+    <div id="region-screen" class="screen hidden">
+        <h1 class="game-title">Choose Your Region</h1>
+        <div class="region-grid">
+            <button class="menu-btn region-btn" data-region="kanto">Kanto</button>
+            <button class="menu-btn region-btn" data-region="johto">Johto</button>
+            <button class="menu-btn region-btn" data-region="hoenn">Hoenn</button>
+            <button class="menu-btn region-btn" data-region="sinnoh">Sinnoh</button>
+            <button class="menu-btn region-btn" data-region="unova">Unova</button>
+            <button class="menu-btn region-btn" data-region="kalos">Kalos</button>
+            <button class="menu-btn region-btn" data-region="alola">Alola</button>
+            <button class="menu-btn region-btn" data-region="galar">Galar</button>
+            <button class="menu-btn region-btn" data-region="paldea">Paldea</button>
+        </div>
+        <button id="region-back-btn" class="back-btn">Back</button>
+    </div>
+
+    <!-- ===== SETTINGS SCREEN ===== -->
+    <div id="settings-screen" class="screen hidden">
+        <h1 class="game-title">Settings</h1>
+
+        <div class="settings-list">
+            <!-- Art Style toggle -->
+            <div class="settings-row">
+                <span class="settings-label">Art Style</span>
+                <div class="toggle-container">
+                    <span class="toggle-option toggle-left active" id="toggle-pixel">Pixel</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="art-style-toggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-option toggle-right" id="toggle-hd">HD</span>
+                </div>
+            </div>
+
+            <!-- Sound toggle -->
+            <div class="settings-row">
+                <span class="settings-label">Sound</span>
+                <div class="toggle-container">
+                    <span class="toggle-option toggle-left active" id="toggle-sound-off">Off</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="sound-toggle">
+                        <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-option toggle-right" id="toggle-sound-on">On</span>
+                </div>
+            </div>
+        </div>
+
+        <button id="settings-back-btn" class="back-btn">Back</button>
+    </div>
+
+    <!-- ===== RULES SCREEN ===== -->
+    <div id="rules-screen" class="screen hidden">
+        <h1 class="game-title">Rules</h1>
+
+        <div class="rules-content">
+            <!-- How Chess Works -->
+            <div class="rules-section">
+                <h2 class="rules-heading">How Chess Works</h2>
+                <p class="rules-text">Chess is a game for two players on an 8x8 board. Each player starts with 16 pieces. The goal is to trap the other player's King so it can't escape. That's called <strong>checkmate</strong>, and you win!</p>
+
+                <h3 class="rules-subheading">The Pieces</h3>
+                <table class="rules-table">
+                    <tr><th>Piece</th><th>How It Moves</th></tr>
+                    <tr><td>King</td><td>One square in any direction. You must keep your King safe!</td></tr>
+                    <tr><td>Queen</td><td>Any number of squares in any direction (up, down, left, right, or diagonal). The most powerful piece.</td></tr>
+                    <tr><td>Rook</td><td>Any number of squares, but only straight (up, down, left, or right).</td></tr>
+                    <tr><td>Bishop</td><td>Any number of squares, but only diagonally.</td></tr>
+                    <tr><td>Knight</td><td>Moves in an "L" shape: two squares one way, then one square to the side. The only piece that can jump over others.</td></tr>
+                    <tr><td>Pawn</td><td>Moves forward one square (or two on its first move). Captures diagonally. If it reaches the other end, it evolves into a Queen, Rook, Bishop, or Knight (you choose)!</td></tr>
+                </table>
+
+                <h3 class="rules-subheading">Important Terms</h3>
+                <ul class="rules-list">
+                    <li><strong>Check</strong> means a King is being attacked. You MUST get out of check on your next move.</li>
+                    <li><strong>Checkmate</strong> means a King is in check and can't escape. Game over!</li>
+                    <li><strong>Stalemate</strong> means it's your turn but you have no legal moves (and you're NOT in check). It's a draw.</li>
+                </ul>
+            </div>
+
+            <!-- Pokémon Piece Rules -->
+            <div class="rules-section">
+                <h2 class="rules-heading">Pokémon Piece Rules</h2>
+                <p class="rules-text">In Pokémon Chess, each chess piece has rules about which Pokémon can fill that role:</p>
+
+                <table class="rules-table">
+                    <tr><th>Piece</th><th>Which Pokémon Can Be This Piece?</th></tr>
+                    <tr><td>King</td><td>Any Pokémon! Pick your favorite.</td></tr>
+                    <tr><td>Queen</td><td>Must be a Legendary, Mythical, Ultra Beast, or Paradox Pokémon.</td></tr>
+                    <tr><td>Rook</td><td>Must weigh over 300 lbs (and not be Legendary or Ultra Beast).</td></tr>
+                    <tr><td>Bishop</td><td>Must have higher Special Attack than physical Attack.</td></tr>
+                    <tr><td>Knight</td><td>Must have higher Speed than HP.</td></tr>
+                    <tr><td>Pawn</td><td>Any regular Pokémon (not Legendary, Mythical, Ultra Beast, pseudo-legendary, or Paradox).</td></tr>
+                </table>
+
+                <h3 class="rules-subheading">Team Colors</h3>
+                <p class="rules-text">Both sides use the same Pokémon team. White's pieces use normal sprites, and Black's pieces use shiny sprites. Look for the colored bar under each Pokémon to tell the teams apart!</p>
+            </div>
+        </div>
+
+        <button id="rules-back-btn" class="back-btn">Back</button>
+    </div>
+
+    <!-- ===== GAME SCREEN ===== -->
+    <div id="game-screen" class="screen hidden">
+        <!-- The big title at the top -->
+        <h1 class="game-title">Pokémon Chess</h1>
+
+        <!-- Shows whose turn it is -->
+        <div id="turn-indicator" class="turn-indicator turn-white">White's Turn</div>
+
+        <!-- The chess board container -->
+        <div class="board-wrapper">
+            <!-- Column letters along the top -->
+            <div class="column-labels">
+                <div class="label-spacer"></div>
+                <div class="col-label">a</div>
+                <div class="col-label">b</div>
+                <div class="col-label">c</div>
+                <div class="col-label">d</div>
+                <div class="col-label">e</div>
+                <div class="col-label">f</div>
+                <div class="col-label">g</div>
+                <div class="col-label">h</div>
+            </div>
+
+            <div class="board-with-rows">
+                <!-- Row numbers along the left side -->
+                <div class="row-labels">
+                    <div class="row-label">8</div>
+                    <div class="row-label">7</div>
+                    <div class="row-label">6</div>
+                    <div class="row-label">5</div>
+                    <div class="row-label">4</div>
+                    <div class="row-label">3</div>
+                    <div class="row-label">2</div>
+                    <div class="row-label">1</div>
+                </div>
+
+                <!-- The 8x8 chess board (squares are created by JavaScript) -->
+                <div id="board"></div>
+            </div>
+        </div>
+
+        <!-- Info panel: shows the selected Pokémon's name, dex number, and piece type -->
+        <div id="info-panel" class="info-panel">
+            <span class="info-hint">Click a Pokémon to see its info</span>
+        </div>
+
+        <!-- Game screen buttons row -->
+        <div class="game-buttons-row">
+            <button id="new-game-btn" class="new-game-btn">Main Menu</button>
+            <button id="save-quit-btn" class="new-game-btn">Save & Quit</button>
+        </div>
+
+        <!-- Review controls (hidden until you click Review Game) -->
+        <div id="review-controls" class="review-controls hidden">
+            <button id="review-start" class="review-btn">|&lt;</button>
+            <button id="review-back" class="review-btn">&lt;</button>
+            <span id="review-counter" class="review-counter">Move 0 / 0</span>
+            <button id="review-forward" class="review-btn">&gt;</button>
+            <button id="review-end" class="review-btn">&gt;|</button>
+            <button id="review-exit" class="review-btn review-exit-btn">Exit Review</button>
+        </div>
+
+        <!-- Game Over popup (hidden until the game ends) -->
+        <div id="game-over-overlay" class="game-over-overlay hidden">
+            <div class="game-over-box">
+                <div id="game-over-title" class="game-over-title">Game Over</div>
+                <div id="game-over-message" class="game-over-message"></div>
+                <div class="game-over-buttons">
+                    <button id="game-over-review" class="new-game-btn">Review Game</button>
+                    <button id="game-over-new-game" class="new-game-btn">Play Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Version number in the bottom left corner -->
+    <div class="version-label">v1.0</div>
+
+    <!-- Load the game JavaScript -->
+    <script type="module" src="game.js"></script>
+</body>
+</html>
