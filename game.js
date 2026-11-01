@@ -2,7 +2,7 @@
 // This file is the brain of Pokémon Chess.
 // It handles the board, clicks, moves, and talks to chess.js for the rules.
 
-import { Chess } from 'https://esm.sh/chess.js';
+import { Chess } from './lib/chess.js';
 import { KANTO_TEAM, REGIONS, getPokemonImageUrl, getPixelSpriteUrl, BACK_ROW, PIECE_RULES, PIECE_RULE_DESCRIPTIONS } from './pokemon.js';
 import { ALL_POKEMON } from './pokemon-data.js';
 
