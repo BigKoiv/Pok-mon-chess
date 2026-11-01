@@ -21,12 +21,13 @@ let computerTimeout = null;    // tracks the thinking timer so we can cancel it
 
 
 // --- Pokémon Cries ---
-// Plays a Pokémon's cry sound effect using free audio files from PokeAPI.
+// Plays a Pokémon's cry sound effect. The sounds are saved in our own
+// sounds/cries/ folder (copied from PokeAPI).
 // Only plays if sound is enabled in Settings.
 
 function playCry(pokemonId) {
     if (!soundEnabled) return;
-    const url = `https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/${pokemonId}.ogg`;
+    const url = `sounds/cries/${pokemonId}.ogg`;
     const audio = new Audio(url);
     audio.volume = 0.4;
     audio.play().catch(() => {

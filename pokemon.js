@@ -122,16 +122,19 @@ const REGIONS = {
 };
 
 // --- Image URL Builders ---
-// PokeAPI gives us free Pokémon images. We just need the Pokémon's ID number.
+// The pixel pictures are saved in our own images/ folder (copied from PokeAPI),
+// so the game does not have to download them from another website.
+// The HD artwork is much bigger, so it still comes from PokeAPI.
+// We just need the Pokémon's ID number.
 
 // Pixel sprites (the retro Game Boy style)
 function getPixelSpriteUrl(pokemonId) {
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`;
+    return `images/pokemon/${pokemonId}.png`;
 }
 
 // Shiny pixel sprites (for the Black/opponent side)
 function getShinyPixelSpriteUrl(pokemonId) {
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemonId}.png`;
+    return `images/pokemon/shiny/${pokemonId}.png`;
 }
 
 // Official HD artwork
