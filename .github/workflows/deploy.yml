@@ -1,0 +1,26 @@
+name: Deploy to Cloudflare Pages
+
+# Cloudflare's own GitHub connection stopped starting builds after 2026-04-19,
+# so every push to main asks Cloudflare to rebuild through a deploy hook. The
+# hook can only rebuild the main branch of this one project; it has no other power.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ask Cloudflare Pages to rebuild main
+        env:
+          DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$DEPLOY_HOOK" ]; then
+            echo "::error::Repository secret CLOUDFLARE_DEPLOY_HOOK is not set"
+            exit 1
+          fi
+          curl -fsS -X POST "$DEPLOY_HOOK" -o /dev/null -w "Cloudflare answered HTTP %{http_code}\n"
